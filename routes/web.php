@@ -1,5 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VerifikasiController;
+>>>>>>> 96c24494bac4008572812748670c7f2312c088ed
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PendataanController;
 use App\Http\Controllers\AdminController;
@@ -12,7 +17,30 @@ Route::get('/dashboard', function () {
     return redirect('/dashboard-admin');
 })->name('dashboard');
 
+<<<<<<< HEAD
 Route::get('/pendataan', [PendataanController::class, 'index']);
 Route::post('/pendataan/store', [PendataanController::class, 'store']);
 
 Route::get('/dashboard-admin', [AdminController::class, 'dashboard']);
+=======
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/verifikasi', [VerifikasiController::class, 'index'])
+        ->name('verifikasi.index');
+
+    Route::get('/verifikasi/{id}', [VerifikasiController::class, 'show'])
+        ->name('verifikasi.show');
+
+    Route::post('/verifikasi/{id}/approve', [VerifikasiController::class, 'approve'])
+        ->name('verifikasi.approve');
+
+    Route::post('/verifikasi/{id}/reject', [VerifikasiController::class, 'reject'])
+        ->name('verifikasi.reject');
+});
+
+require __DIR__.'/auth.php';
+>>>>>>> 96c24494bac4008572812748670c7f2312c088ed
