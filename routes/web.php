@@ -1,17 +1,28 @@
 <?php
 
+<<<<<<< HEAD
+=======
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VerifikasiController;
+>>>>>>> 96c24494bac4008572812748670c7f2312c088ed
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PendataanController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return redirect('/dashboard-admin');
+})->name('dashboard');
 
+<<<<<<< HEAD
+Route::get('/pendataan', [PendataanController::class, 'index']);
+Route::post('/pendataan/store', [PendataanController::class, 'store']);
+
+Route::get('/dashboard-admin', [AdminController::class, 'dashboard']);
+=======
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,3 +43,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+>>>>>>> 96c24494bac4008572812748670c7f2312c088ed
